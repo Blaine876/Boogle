@@ -1,12 +1,11 @@
 import React from "react";
-
 import { Route, Switch } from "react-router-dom";
-import { Home, Search } from "./pages";
+import { Home, SearchPage } from "./pages";
 function Routes() {
   return (
     <Switch>
       <Route path="/search">
-        <Search />
+        <SearchPage />
       </Route>
 
       <Route path="/">

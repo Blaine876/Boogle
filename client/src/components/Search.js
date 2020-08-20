@@ -1,12 +1,61 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 
-function Search() {
+import SearchIcon from "@material-ui/icons/Search";
+import MicIcon from "@material-ui/icons/Mic";
+
+import { Button } from "@material-ui/core";
+
+import { useHistory } from "react-router-dom";
+import { SearchContext } from "../context/SearchContext";
+import "./Search.css";
+
+function Search({ hideButtons = false }) {
+  const [input, setInput] = useState("");
+  const { setSearchTerm } = useContext(SearchContext);
+  const history = useHistory();
+
+  const search = (e) => {
+    e.preventDefault();
+    console.log("Search Function");
+    setSearchTerm(input);
+    history.push("/search");
+  };
+
   return (
-    <div className="search">
+    <form className="search">
       <div className="search__input">
-        <h2>Search</h2>
+        <SearchIcon className="search__inputIcon" />
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+        <MicIcon />
       </div>
-    </div>
+
+      {!hideButtons ? (
+        <div className="search__buttons">
+          <Button type="submit" onClick={search} variant="outlined">
+            Boogle Search
+          </Button>
+          <Button variant="outlined">I'm Feeling Lucky</Button>
+        </div>
+      ) : (
+        <div className="search__buttons">
+          <Button
+            className="search__buttonsHidden"
+            type="submit"
+            onClick={search}
+            variant="outlined"
+          >
+            Boogle Search
+          </Button>
+          <Button className="search__buttonsHidden" variant="outlined">
+            I'm Feeling Lucky
+          </Button>
+        </div>
+      )}
+    </form>
   );
 }
 
