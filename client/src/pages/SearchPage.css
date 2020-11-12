@@ -51,13 +51,19 @@
 
 .searchPage__option a {
   margin-left: 0.5rem;
+  font-size: 1rem;
 }
 
 .searchPage__result {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0px 0px 3px 0px;
   border-radius: 15px;
   margin: 1.5rem 0rem;
   padding: 1.5rem;
+}
+
+.searchPage__link {
+  color: black;
+  font-size: 1.6rem;
+  text-decoration: none;
 }
 
 .searchPage__resultCount {
@@ -81,17 +87,20 @@
 }
 
 .searchPage__resultTitle > h2 {
+  font-size: 2.4rem;
   font-weight: 600;
 }
 
 .searchPage__resultSnippet {
   margin-top: 1rem;
+  font-size: 1.6rem;
 }
 
 .searchPage__resultImage {
-  object-fit: contain;
-  height: 5rem;
-  width: 5rem;
+  object-fit: cover;
+  height: 8rem;
+  width: 8rem;
+  border-radius: 1rem;
   margin-right: 0.4rem;
 }
 

@@ -7,18 +7,23 @@ import { Button } from "@material-ui/core";
 
 import { useHistory } from "react-router-dom";
 import { SearchContext } from "../context/SearchContext";
+
 import "./Search.css";
 
-function Search({ hideButtons = false }) {
+function Search({ hideButtons = false, term }) {
   const [input, setInput] = useState("");
   const { setSearchTerm } = useContext(SearchContext);
   const history = useHistory();
 
   const search = (e) => {
     e.preventDefault();
-    console.log("Search Function");
-    setSearchTerm(input);
-    history.push("/search");
+
+    if (input.length === 0) {
+      return;
+    } else {
+      setSearchTerm(input);
+      history.push("/search");
+    }
   };
 
   return (
@@ -29,6 +34,7 @@ function Search({ hideButtons = false }) {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
+          placeholder={term}
         />
         <MicIcon />
       </div>

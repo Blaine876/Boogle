@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { SearchContext } from "../context/SearchContext";
 import useGoogleSearch from "../hooks/useGoogleSearch";
-import Response from "../response";
 import { Link } from "react-router-dom";
 import { Search } from "../components";
 
@@ -15,26 +14,22 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import "./SearchPage.css";
 
 function SearchPage() {
-  const googleLogo =
-    "https://boogle-battleofthebooks.weebly.com/uploads/2/6/0/8/26083305/7611755_orig.png";
-
   const { term } = useContext(SearchContext);
-
-  // LIVE API CALL
   const { data } = useGoogleSearch(term);
 
-  //const data = Response;
-
-  console.log(data);
   return (
     <div className="searchPage">
       <div className="searchPage__header">
         <Link to="/">
-          <img className="searchPage__logo" src={googleLogo} alt="logo" />
+          <img
+            className="searchPage__logo"
+            src="https://boogle-battleofthebooks.weebly.com/uploads/2/6/0/8/26083305/7611755_orig.png"
+            alt="logo"
+          />
         </Link>
 
         <div className="searchPage__headerBody">
-          <Search hideButtons />
+          <Search hideButtons term={term} />
 
           <div className="searchPage__options">
             <div className="searchPage__optionsLeft">
@@ -80,7 +75,7 @@ function SearchPage() {
         </div>
       </div>
 
-      {true && (
+      {data?.items && (
         <div className="searchPage__results">
           <p className="searchPage__resultCount">
             About {data?.searchInformation.formattedTotalResults} results{" "}
@@ -102,7 +97,9 @@ function SearchPage() {
                     />
                   )}
               </a>
-              <a href={item.link}>{item.displayLink}</a>
+              <a className="searchPage__link" href={item.link}>
+                {item.displayLink}
+              </a>
               <a className="searchPage__resultTitle" href={item.link}>
                 <h2>{item.title}</h2>
               </a>

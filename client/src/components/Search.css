@@ -16,10 +16,12 @@
   padding: 1rem 2rem;
   font-size: medium;
   border: none;
+  outline: none;
 }
 
 .search__input > input:focus {
-  outline-width: 0;
+  outline: 0px !important;
+  -webkit-appearance: none;
 }
 
 .search__buttons {
@@ -30,11 +32,12 @@
 
 .search__buttons button {
   margin: 0.5rem;
-  padding: 0.7rem 1.5rem;
+  padding: 1rem 1.5rem;
   background-color: #f8f8f8;
   border: 1px solid white;
   text-transform: inherit;
   color: #5f6368;
+  font-size: 1.6rem;
 }
 
 .search__buttons button:hover {
